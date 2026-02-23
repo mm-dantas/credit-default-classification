@@ -61,15 +61,15 @@ def gerar_previsoes_inadimplencia():
         if df_new.dtypes[i] == 'object' or df_new.dtypes[i] == 'category':                        
             variaveis_categoricas.append(i)
     
-    lb = LabelEncoder()
+    encoders = joblib.load('label_encoders.pkl')
 
-    for var in variaveis_categoricas:
-        df_new[var] = lb.fit_transform(df_new[var])
+    for col in variaveis_categoricas:
+        df_new[col] = encoders[col].transform(df_new[col])
     
-    variaveis_explicativas = df_new.iloc[:, 0:15]
+    variaveis_explicativas = df_new.iloc[:, 0:16]
 
-    Normalizador = MinMaxScaler()
-    dados_normalizados = Normalizador.fit_transform(variaveis_explicativas)
+    scaler = joblib.load('scaler_minmax.pkl')
+    dados_normalizados = scaler.transform(variaveis_explicativas)
 
     previsoes = clf.predict(dados_normalizados)
     probabilidades = clf.predict_proba(dados_normalizados)

@@ -104,13 +104,7 @@ git clone https://github.com/mm-dantas/credit-default-classification.git
 cd credit-default-classification
 ```
 
-### 3️⃣ Instale as dependências
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4️⃣ Execute o Jupyter Notebook
+### 3️⃣ Execute o Jupyter Notebook
 
 ```bash
 jupyter notebook

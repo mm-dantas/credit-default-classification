@@ -84,10 +84,13 @@ O modelo busca equilibrar o **Trade-off** de concessão:
 ```text
 credit-default-classification/
 │
-├── data/                       # (Opcional) Base de dados ou amostras
+├── README.md
 ├── credit-default-classification.ipynb
-├── README.md                   # Documentação do projeto
-└── requirements.txt            # Dependências do Python
+├── df_original_com_probabilidade.xlsx
+├── gerar_previsoes_inadimplencia.py
+├── label_encoders.pkl
+├── modelo_treinado.pk
+└── scaler_minmax.pkl
 ```
 
 ## 🚀 Como Executar o Projeto

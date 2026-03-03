@@ -24,13 +24,19 @@ def gerar_previsoes_inadimplencia():
     clf = joblib.load('modelo_treinado.pk')
     print("Pacotes Carregados...")
 
+    DB_DRIVER = "ODBC Driver 17 for SQL Server"
+    DB_SERVER = "localhost"
+    DB_DATABASE = "MODELOS_PREDITIVOS"
+    DB_USER = ""
+    DB_PASSWORD = ""
+
     conexao = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=localhost;"
-    "DATABASE=MODELOS_PREDITIVOS;"
-    "UID=usuario_python;"
-    "PWD=123456;"
-    )
+    f"DRIVER={{{DB_DRIVER}}};"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_USER};"
+    f"PWD={DB_PASSWORD};"
+)
     df_original = pd.read_sql("SELECT * FROM EXTRACAO_DADOS_SISTEMA", conexao)
     conexao.close()
 
@@ -80,12 +86,12 @@ def gerar_previsoes_inadimplencia():
     df_conversao = df_original[columns]
 
     conexao = pyodbc.connect(
-    "DRIVER={ODBC Driver 17 for SQL Server};"
-    "SERVER=localhost;"
-    "DATABASE=MODELOS_PREDITIVOS;"
-    "UID=usuario_python;"
-    "PWD=123456;"
-    )
+    f"DRIVER={{{DB_DRIVER}}};"
+    f"SERVER={DB_SERVER};"
+    f"DATABASE={DB_DATABASE};"
+    f"UID={DB_USER};"
+    f"PWD={DB_PASSWORD};"
+)
 
     cursor = conexao.cursor()
 
